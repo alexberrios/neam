@@ -1,0 +1,52 @@
+---
+import Miembro from '../components/Miembro.astro';
+import Streamer from '../components/Streamer.astro';
+import Layout from '../layouts/Layout.astro';
+
+import streamers from "./data/streamer.json";
+
+// Fetch de los datos del gremio
+const resp = await fetch("https://gameinfo.albiononline.com/api/gameinfo/guilds/UKjIaj7NTf2A3q1zCBHg_A/members");
+const data = await resp.json();
+
+// Ordenar los miembros por KillFame en orden descendente
+const miembrosOrdenados = data.sort((a: any, b: any) => b.KillFame - a.KillFame);
+---
+
+<Layout title="Gremio Krozakov">
+	<main class="container mx-auto p-6">
+		<h1 class="text-4xl font-bold text-center mb-6">Somos un gremio que representa a Neamhel, si quieres postular revisa Discord</h1>
+        
+        <div id="racha" class="flex justify-center my-10">
+            <img src="/img/kroza-logo.png" alt="Krozakov Logo">
+        </div>
+        <section class="border mt-3 mb-4">
+            <h2 class="text-4xl font-bold text-center mb-10">Requisitos para ingresar:</h2>
+            <ol>
+                <li class="text-2xl font-bold text-center mb-10">
+                    Tener <a class="text-yellow-300" href="https://discord.com/invite/khpghp9GMX">discord</a>  para las actividades del gremio.
+                </li>
+            </ol>
+        </section>
+
+        <!-- Sección de Streamers -->
+        <h2 class="text-5xl font-bold text-center mb-10">Sigue a nuestros miembros en Twitch</h2>
+        <section class="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            {
+                streamers.map((streamer) => (
+                    <Streamer {...streamer} />
+                ))
+            }
+        </section>
+
+        <!-- Sección de Miembros del Gremio -->
+        <h2 class="text-5xl font-bold text-center mb-10">Miembros del gremio</h2>
+        <section class="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            {
+                miembrosOrdenados.map((miembro: any) => (
+                    <Miembro miembro={miembro} />
+                ))
+            }
+        </section>
+	</main>
+</Layout>

@@ -7,44 +7,55 @@ const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
+		<meta name="description" content="Neamhel web" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/img/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="/css/estilos.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
 	<body>
+		<!-- Indicador de progreso -->
+		<div id="progressBar"></div>
+
+		<header>
+			<img class="twitch-logo" src="/img/twitch-logo.png" alt="Twitch Logo">
+			<h1>Neamhel</h1>
+		</header>
+	
+		<nav>
+			<a href="https://www.twitch.tv/neamhel" target="_blank"><i class="fab fa-twitch"></i> Ver Stream</a>
+			<a href="/"><i class="fas fa-gamepad"></i> Ver Rachas</a>
+			<a href="/krozakov"><i class="fas fa-shield-alt"></i> Krozakov</a>
+			<a href="/aliados"><i class="fa-regular fa-handshake"></i> Aliados</a>
+		</nav>
 		<slot />
+
+		<footer>
+			<p class="text-sm text-gray-400">
+				© 2024 Sitio desarrollado por <strong class="text-white">SouthGo</strong> para <strong class="text-white">Neamhel</strong> - Todos los derechos reservados
+			</p>
+			<div class="social-icons">
+				<a href="https://www.youtube.com/@Neamhel/featured" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+				<a href="https://discord.com/invite/khpghp9GMX" target="_blank" aria-label="Discord"><i class="fab fa-discord"></i></a>
+				<a href="https://www.tiktok.com/@neamhel" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+				<a href="https://www.instagram.com/neamhel/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+			</div>
+		</footer>
+	
+		<!-- Botón de volver al inicio -->
+		<button id="scrollTopBtn">▲</button>
+		<!-- Botón para cambiar de modo claro/oscuro -->
+		<button id="toggleTheme" class="fixed top-20 right-5 bg-purple-600 text-white py-2 px-4 rounded-lg cursor-pointer z-50 md:top-4 md:right-4 md:py-1 md:px-2 transition-transform hover:scale-105">
+			Cambiar Tema
+		</button>
+
+		<script src="/js/app.js" is:inline></script>
 	</body>
 </html>
-<style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
-</style>

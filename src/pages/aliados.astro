@@ -1,0 +1,70 @@
+---
+import Streamer from "../components/Streamer.astro";
+import Layout from "../layouts/Layout.astro";
+import aliados from "./data/aliados.json";
+
+// https://gameinfo.albiononline.com/api/gameinfo/alliances/zTsucFRYQkmpGTFG__AjLg
+const resp = await fetch("https://gameinfo.albiononline.com/api/gameinfo/alliances/zTsucFRYQkmpGTFG__AjLg");
+const data = await resp.json();
+---
+
+<Layout title="Aliados Krozakov">
+    <main class="container mx-auto p-6">
+        <!-- Sección de Aliados en Twitch -->
+        <h2 class="text-5xl font-bold text-center mb-10">Aliados en Twitch</h2>
+        <section class="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            {
+                aliados.map((aliado) => (
+                    <Streamer {...aliado} />
+                ))
+            }
+        </section>
+
+        <!-- Sección de la Alianza en forma de tarjetas -->
+        <section class="mt-12">
+            <h2 class="text-4xl font-bold text-center mb-10">Alianza Dragon Knights | DKE</h2>
+            <div class="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                {
+                    data.Guilds.map((aliado: any) => (
+                        <div class="bg-gray-800 text-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 ease-in-out hover:bg-gray-700">
+                            <h3 class="text-2xl font-semibold text-center mb-2">{aliado.Name}</h3>
+                        </div>
+                    ))
+                }
+            </div>
+        </section>
+    </main>
+</Layout>
+<style>
+    .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.card {
+    background-color: #1f2937;
+    color: white;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+}
+
+.card:hover {
+    background-color: #374151;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.card p {
+    font-size: 0.875rem;
+    color: #9ca3af;
+}
+
+</style>

@@ -1,0 +1,39 @@
+---
+interface Props{
+    nick: string;
+    url: string;
+    instagram?: string;
+    tiktok?: string;
+    youtube?: string;
+    discord?: string;
+    twitter?: string;
+    kick?: string;
+}
+
+const {nick, url, instagram, tiktok, youtube, discord,  twitter, kick } = Astro.props;
+
+// const parent = 'http://localhost:4321/krozakov';
+const parent = 'neam.netlify.app';
+---
+<div class="text-center">
+    <h2 class="text-3xl font-semibold mb-4">{nick}</h2>
+    <iframe 
+    src=`https://player.twitch.tv/?channel=${url}&parent=${parent}&autoplay=true&muted=true`
+    frameborder="0" 
+    allowfullscreen="true" 
+    scrolling="no" 
+    height="378" 
+    width="620"
+    class="w-full h-64 md:h-72 lg:h-80">
+    </iframe>
+    <hr />
+    <div class="mt-2">
+        <a href={`https://www.twitch.tv/${url}`} target="_blank" aria-label="Instagram"><i class="fab fa-twitch"></i></a>
+        {instagram ? <a href={`https://www.instagram.com/${instagram}`} target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a> : ''}
+        {tiktok ?   <a href={`https://www.tiktok.com/@${tiktok}`} target="_blank" aria-label="tiktok"><i class="fab fa-tiktok"></i></a> : ''}
+        {youtube ?   <a href={`https://www.youtube.com/@${youtube}/featured`} target="_blank" aria-label="Instagram"><i class="fab fa-youtube"></i></a> : ''}
+        {discord ?   <a href={`${discord}`} target="_blank" aria-label="Instagram"><i class="fab fa-discord"></i></a> : ''}
+        {twitter ?   <a href={`https://www.x.com/${twitter}/`} target="_blank" aria-label="X"><i class="fab fa-x"></i></a> : ''}
+        <!-- {kick ?   <a href={`https://www.x.com/${kick}/`} target="_blank" aria-label="X"><i class="fab fa-kick"></i></a> : ''} -->
+    </div>
+</div>

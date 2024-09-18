@@ -1,0 +1,27 @@
+---
+interface Props {
+    miembro: any;
+}
+
+const { miembro } = Astro.props;
+---
+
+<div class="bg-gray-900 text-white p-6 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out h-full">
+    <h2 class="text-2xl font-bold mb-4">{miembro.Name}</h2>
+    
+    <p class="text-sm mb-2">
+        <span class="font-semibold text-gray-400">Kill Fame:</span> {miembro.KillFame.toLocaleString()}
+    </p>
+
+    <p class="text-sm mb-2">
+        <span class="font-semibold text-gray-400">Death Fame:</span> {miembro.DeathFame.toLocaleString()}
+    </p>
+    
+    <p class="text-sm mb-2">
+        <span class="font-semibold text-gray-400">PvE Fame:</span> {miembro.LifetimeStatistics.PvE.Total.toLocaleString()}
+    </p>
+
+    <p class="text-sm mb-2">
+        <span class="font-semibold text-gray-400">Gathering Fame:</span> {miembro.LifetimeStatistics.Gathering.All.Total.toLocaleString()}
+    </p>
+</div>
